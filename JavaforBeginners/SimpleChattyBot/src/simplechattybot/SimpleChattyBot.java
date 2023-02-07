@@ -38,20 +38,16 @@ public class SimpleChattyBot {
     static void guessAge() {
         System.out.println("Let me guess your age.");
         System.out.println("Enter remainders of dividing your age by 3, 5 and 7.");
-        System.out.print("> ");
-        int rem3 = scanner.nextInt();
-        System.out.print("> ");
-        int rem5 = scanner.nextInt();
-        System.out.print("> ");
-        int rem7 = scanner.nextInt();
+        int rem3 = getInt("Divide your age by 3 > ");
+        int rem5 = getInt("Divide your age by 5 > ");
+        int rem7 = getInt("Divide your age by 7 > ");
         int age = (rem3 * 70 + rem5 * 21 + rem7 * 15) % 105;
         System.out.println("Your age is " + age + "; that's a good time to start programming!");
     }
 
     static void count() {
         System.out.println("Now I will prove to you that I can count to any number you want.");
-        System.out.print("> ");
-        int num = scanner.nextInt();
+        int num = getInt("> ");
         for (int i = 0; i <= num; i++) {
             System.out.printf("%d!\n", i);
         }
@@ -67,8 +63,7 @@ public class SimpleChattyBot {
                             3. To determine the execution time of a program.
                             4. To interrupt the execution of a program.""");
             do{
-                System.out.print("> ");
-                option = scanner.nextInt();
+                option = getInt("> ");
                 if (option != 2) {
                     System.out.println("Please, try again.");
                 }
@@ -77,6 +72,19 @@ public class SimpleChattyBot {
 
     static void end() {
         System.out.println("Congratulations, have a nice day!"); // Do not change this text
+    }
+    
+    public static int getInt(String message) {
+        Scanner sc = new Scanner(System.in);
+        int num;
+        System.out.print(message);
+        while (!sc.hasNextInt()){
+            System.out.println("Enter a numeric value");
+            System.out.print(message);
+            sc.nextLine();
+        }
+        num = sc.nextInt();
+        return num;
     }
     
 }
