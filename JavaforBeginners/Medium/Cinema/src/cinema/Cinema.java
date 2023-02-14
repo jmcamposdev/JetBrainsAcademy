@@ -1,23 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package cinema;
 
+import java.lang.System.Logger;
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Scanner;
 
-/**
- *
- * @author josemaria
- */
 public class Cinema {
 
      public static final DecimalFormat df = new DecimalFormat("0.00");
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         int rows = GetData.getInt("Enter the number of rows:\n> ",1); // Get the rows
         int columns = GetData.getInt("Enter the number of seats in each row:\n> ",1); // Get columns
         char[][] cinema = new char[rows][columns];
