@@ -31,7 +31,7 @@ public class Machine {
     public boolean isWorking () {
         return this.isworking;
     }
-    
+
     public boolean getIsWorking() {
         return isworking;
     }
