@@ -3,7 +3,7 @@ If you don't have much experience in programming, this track is the best way to 
 
  - 🕒 45 **hours** for all learning activities
  - 📕 **101 topics** with theory and practice adapted to your level
- - 📚 **11 projects** to choose from for your portfolio
+ - 📚 **11 projects** to do
 
 ## Projects
 They are subdivided into 4 difficulties: **Easy**, **Medium**, **Hard** and **Challenging**.
