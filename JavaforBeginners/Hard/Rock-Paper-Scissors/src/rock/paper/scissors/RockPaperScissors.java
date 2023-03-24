@@ -19,8 +19,34 @@ public class RockPaperScissors {
     };
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String userInput = sc.next();
-        Choice userChoice = Choice.valueOf(userInput.toUpperCase());
+        boolean exitGame = false;
+        String userInput = "";
+
+
+        while (!exitGame) {
+            boolean validInput = false;
+            do {
+                System.out.print("Enter a Choice (rock|paper|scissors): ");
+                userInput = sc.next();
+                if (userInput.matches("!exit|rock|paper|scissors")) {
+                    validInput = true;
+                    if (userInput.equals("!exit")) exitGame = true;
+                } else {
+                    System.out.println("Invalid input");
+                }
+            } while (!validInput);
+
+            if (!exitGame) {
+                play(Choice.valueOf(userInput.toUpperCase()));
+            }
+        }
+        System.out.println("Bye!");
+
+
+
+    }
+
+    public static void play (Choice userChoice) {
         Choice computerChoice = Choice.values()[(int) (Math.random() * Choice.values().length)];
         if (computerChoice == userChoice) {
             System.out.println("There is a draw (" + computerChoice + ")");
