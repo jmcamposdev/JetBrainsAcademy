@@ -10,6 +10,11 @@ In this project we will learn:
 
 This Project is separate in **5 Stages** we will describe each stage.
 
+## Result
+<p align="center">
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/rockPaperScissors_Animation.gif?raw=true"/>
+</p>
+
 ## Stage 1 ✅
 The program will read input from the user and then select an option that defeats the one picked by the user. The output will display `"Sorry, but the computer chose <option\>"`, where <option\> is the name of the option that the program's picked depending on the user's input.
 
