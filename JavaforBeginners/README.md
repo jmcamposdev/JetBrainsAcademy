@@ -5,7 +5,7 @@ If you don't have much experience in programming, this track is the best way to 
  - 📕 **101 topics** with theory and practice adapted to your level
  - 📚 **11 projects** to choose from for your portfolio
 
-## You Will Leanr
+## You Will Learn
  - Learning the syntax of Java
  - Dealing with integers
  - Working with strings and arrays
