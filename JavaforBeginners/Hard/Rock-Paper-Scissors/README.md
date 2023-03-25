@@ -12,7 +12,7 @@ This Project is separate in **5 Stages** we will describe each stage.
 
 ## Result
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/rockPaperScissors_Animation.gif?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/rockPaperScissors_Animation.gif?raw=true"/>
 </p>
 
 ## Stage 1 ✅
@@ -165,7 +165,7 @@ The original game has fairly small choice of options.
 
 The extended version of the game makes it hard to draw. Now, your program should accept alternative lists of options, like `Rock`, `Paper`, `Scissors`, `Lizard`, `Spock`, and so on. You can take the following options (don't take their relations into account; we'll speak about them further on):
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/rock-paper-scissors-extended.jpg?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/rock-paper-scissors-extended.jpg?raw=true"/>
 </p>
 n this stage, before the game starts, users can choose the options. After entering the name, they should provide a list of the options separated by a comma. For example:
 
@@ -181,25 +181,25 @@ Regardless of the chosen options, your program, obviously, should identify which
 
 Let's imagine that the following options are involved in the game "Rock Fire Scissors Sponge Paper Air Water". Order is important.
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/orderRockPaperScissors.png?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/orderRockPaperScissors.png?raw=true"/>
 </p>
 Let us represent this line as a closed circle:
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/line-closed-circle.jpg?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/line-closed-circle.jpg?raw=true"/>
 </p>
 First, every option produces a draw when opposed to itself.
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/drawOption.png?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/drawOption.png?raw=true"/>
 </p>
 Secondly, every option beats half of the other options and is defeated by another half.
 For "Rock":
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/EachOptionDefeatedAndBeatsAHalf.png?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/EachOptionDefeatedAndBeatsAHalf.png?raw=true"/>
 </p>
 The first half of the options after Rock are Fire Scissors and Sponge (Rock beat it). Another half (after first half) - Paper, Air and Water are defeated Rock.
 For "Fire":
 <p align="center">
-<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/fireOptions.png?raw=true"/>
+<img src="https://github.com/jmcamposdev/JetBrainsAcademy/blob/main/img/Rock-paper-scissors/fireOptions.png?raw=true"/>
 </p>
 he first half of the options after Fire are Scissors, Sponge and Paper (Fire beat it). Another half (after first half) - Air, Water and Rock are defeated Fire.
 
