@@ -5,6 +5,16 @@ If you don't have much experience in programming, this track is the best way to 
  - 📕 **101 topics** with theory and practice adapted to your level
  - 📚 **11 projects** to choose from for your portfolio
 
+## You Will Leanr
+ - Learning the syntax of Java
+ - Dealing with integers
+ - Working with strings and arrays
+ - Getting acquainted with loops and conditions
+ - Exploring the basic ideas of object-oriented programming
+ - Processing the user's input
+ - Handling runtime errors
+ - Developing your very first complex program from scratch
+
 ## Projects
 They are subdivided into 4 difficulties: **Easy**, **Medium**, **Hard** and **Challenging**.
 
