@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package rock.paper.scissors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *
@@ -20,15 +13,16 @@ public class RockPaperScissors {
     public static Scanner sc = new Scanner(System.in);
     public static int userScore = 0;
     public static ArrayList<Choice> userChoices = new ArrayList<>();
+    public static String REG_USER_CHOICES = "ROCK|FIRE|SCISSORS|SNAKE|HUMAN|TREE|WOLF|SPONGE|PAPER|AIR|WATER|DRAGON|DEVIL|LIGHTNING|GUN";
 
     public static void main(String[] args) {
-
+        System.out.println(info());
 
         boolean exitGame = false;
         String userInput;
         String userName;
 
-        System.out.print("Enter your name:");
+        System.out.print("Enter your name: ");
         userName = sc.nextLine();
         System.out.println("Hello, " + userName);
 
@@ -92,19 +86,26 @@ public class RockPaperScissors {
     }
 
     public static ArrayList<Choice> getUserChoices () {
+        boolean validUserChoices = true;
+        System.out.println("Input the choices separated by commas\n(if you don't input anything, the default choices are (ROCK,PAPER,SCISSORS): ");
         String userChoice = sc.nextLine();
         ArrayList<Choice> userChoices = new ArrayList<>();
         if (userChoice.length() > 0) {
             String[] split = userChoice.split(",");
-            for (String s : split) {
-                userChoices.add(Choice.valueOf(s.toUpperCase()));
+            for(int i = 0; i < split.length && validUserChoices; i++) {
+                if (split[i].toUpperCase().matches(REG_USER_CHOICES)) {
+                    userChoices.add(Choice.valueOf(split[i].toUpperCase()));
+                } else {
+                    validUserChoices = false;
+                    System.out.println("Invalid input "+ split[i].toUpperCase() + ". Please try again");
+                }
             }
         } else {
             userChoices.add(Choice.ROCK);
             userChoices.add(Choice.PAPER);
             userChoices.add(Choice.SCISSORS);
         }
-        return userChoices;
+        return validUserChoices ? userChoices : getUserChoices();
     }
 
     public static boolean validateUserChoice (String userChoice, ArrayList<Choice> userChoices) {
@@ -119,19 +120,36 @@ public class RockPaperScissors {
     }
 
     public static ArrayList<Choice> userWinningCombinations (ArrayList<Choice> userChoices, Choice userChoice) {
+        ArrayList<Choice> winningCombinations = allWinningCombinations(userChoice);
+        winningCombinations.removeIf(choice -> !userChoices.contains(choice));
+        return winningCombinations;
+    }
+
+    public static ArrayList<Choice> allWinningCombinations (Choice choice) {
         ArrayList<Choice> winningCombinations = new ArrayList<>();
-        int numberOfWinningCombinations = userChoices.size() / 2;
-        int indexUserChoice = userChoices.indexOf(userChoice);
+        ArrayList<Choice> allChoices = new ArrayList<>(Arrays.asList(Choice.values()));
+        int numberOfWinningCombinations = allChoices.size() / 2;
+        int indexUserChoice = allChoices.indexOf(choice);
         while (numberOfWinningCombinations > 0) {
-            if (indexUserChoice == userChoices.size() - 1) {
+            if (indexUserChoice == allChoices.size() - 1) {
                 indexUserChoice = 0;
             } else {
                 indexUserChoice++;
             }
-            winningCombinations.add(userChoices.get(indexUserChoice));
+            winningCombinations.add(allChoices.get(indexUserChoice));
             numberOfWinningCombinations--;
         }
         return winningCombinations;
     }
-    
+
+    public static String info () {
+        return """
+                This is a game of Rock, Paper, Scissors extended with the following choices:\s
+                   ROCK, FIRE, SCISSORS, SNAKE, HUMAN, TREE, WOLF, SPONGE, PAPER, AIR, WATER, DRAGON, DEVIL, LIGHTNING, GUN
+                The game will ask you to input your name and then the choices you want to play with.
+                If you don't input any choices, the default choices will be used are (ROCK,PAPER,SCISSORS).
+                You can also input your own choices separated by commas.
+                """;
+    }
+
 }

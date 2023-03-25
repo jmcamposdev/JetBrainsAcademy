@@ -4,6 +4,6 @@
  */
 package rock.paper.scissors;
 
-public enum Choice {
-    ROCK, PAPER, SCISSORS
+public enum Choice implements Comparable<Choice> {
+    ROCK, FIRE, SCISSORS, SNAKE, HUMAN, TREE, WOLF, SPONGE, PAPER, AIR, WATER, DRAGON, DEVIL, LIGHTNING, GUN;
 }
