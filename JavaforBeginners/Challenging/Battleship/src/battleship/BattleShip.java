@@ -8,6 +8,7 @@ public class BattleShip {
     private static final int SHIP_VALUE = 1;
     private static final int HIT_VALUE = 2;
     private static final int MISS_VALUE = 3;
+    private int numberOfSankShips = 0;
 
     private static final Ship[] ALL_SHIPS = {
             new Ship("Aircraft Carrier", 5),
@@ -24,6 +25,10 @@ public class BattleShip {
         board = new int[size][size]; // Create the board
         placeShips(); // Place the ships in the board
 
+    }
+
+    public boolean gameWon () {
+        return numberOfSankShips == ALL_SHIPS.length;
     }
 
 
@@ -177,6 +182,81 @@ public class BattleShip {
         return isShipNear;
     }
 
+    public String isHit (int x, int y) {
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
+            throw new IllegalArgumentException("The coordinates passes aren't correct");
+        }
+        boolean isAHitValue = board[x][y] == HIT_VALUE;
+        String result = "You missed!";
+        if (isAHitValue) {
+            result =  "You hit a ship!";
+        } else{
+            boolean isHit = board[x][y] == SHIP_VALUE;
+            board[x][y] = isHit ? HIT_VALUE : MISS_VALUE;
+            if (isHit) {
+                if (isShipSank(x, y)) {
+                    result = "You sank a ship!";
+                } else {
+                    result = "You hit a ship!";
+                }
+            }
+        }
+        return gameWon() ? "" : result;
+    }
+
+    private boolean isShipSank(int x, int y) {
+        boolean isShipSank = true;
+        int shipX = x;
+        int shipY = y;
+        // Validate the Top of the ship
+        while (shipX > 0 && (board[shipX-1][shipY] == SHIP_VALUE || board[shipX-1][shipY] == HIT_VALUE) && isShipSank) {
+            shipX--;
+            if (board[shipX][shipY] == SHIP_VALUE) {
+                isShipSank = false;
+            }
+        }
+        // Validate the Bottom of the ship
+        shipX = x;
+        while (shipX < board.length-1 && (board[shipX+1][shipY] == SHIP_VALUE || board[shipX+1][shipY] == HIT_VALUE) && isShipSank) {
+            shipX++;
+            if (board[shipX][shipY] == SHIP_VALUE) {
+                isShipSank = false;
+            }
+        }
+        // Validate the left side of the ship
+        shipX = x;
+        while (shipY > 0 && (board[shipX][shipY-1] == SHIP_VALUE || board[shipX][shipY-1] == HIT_VALUE) && isShipSank) {
+            shipY--;
+            if (board[shipX][shipY] == SHIP_VALUE) {
+                isShipSank = false;
+            }
+        }
+        // Validate the right side of the ship
+        shipY = y;
+        while (shipY < board[0].length-1 && (board[shipX][shipY+1] == SHIP_VALUE || board[shipX][shipY+1] == HIT_VALUE) && isShipSank) {
+            shipY++;
+            if (board[shipX][shipY] == SHIP_VALUE) {
+                isShipSank = false;
+            }
+        }
+        if (isShipSank) {
+            numberOfSankShips++;
+        }
+        return isShipSank;
+    }
+
+    public boolean isValidCoordinate (String coordinate) {
+        boolean isValidCoordinate = false;
+        if (coordinate.matches(PATTERN_COORDINATE)) {
+            int x = coordinate.charAt(0) - 'A';
+            int y = Integer.parseInt(coordinate.substring(1))-1;
+            if (x >= 0 && x < board.length && y >= 0 && y < board[0].length) {
+                isValidCoordinate = true;
+            }
+        }
+        return isValidCoordinate;
+    }
+
     @Override
     public String toString() {
         char rowIndex = 'A';
@@ -195,24 +275,20 @@ public class BattleShip {
         return boardString.toString();
     }
 
-    public boolean isHit (int x, int y) {
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
-            throw new IllegalArgumentException("The coordinates passes aren't correct");
-        }
-        boolean isHit = board[x][y] == SHIP_VALUE;
-        board[x][y] = isHit ? HIT_VALUE : MISS_VALUE;
-        return isHit;
-    }
-
-    public boolean isValidCoordinate (String coordinate) {
-        boolean isValidCoordinate = false;
-        if (coordinate.matches(PATTERN_COORDINATE)) {
-            int x = coordinate.charAt(0) - 'A';
-            int y = Integer.parseInt(coordinate.substring(1))-1;
-            if (x >= 0 && x < board.length && y >= 0 && y < board[0].length) {
-                isValidCoordinate = true;
+    public String toStringFlog() {
+        char rowIndex = 'A';
+        StringBuilder boardString = new StringBuilder();
+        boardString.append("  1 2 3 4 5 6 7 8 9 10\n");
+        for (int[] array : this.board) {
+            boardString.append(rowIndex++);
+            for (int value : array) {
+                char icon = value == FLOG_VALUE ? '~' :
+                        value == SHIP_VALUE ? '~' :
+                                value == HIT_VALUE ? 'X' : 'M';
+                boardString.append(" ").append(icon);
             }
+            boardString.append("\n");
         }
-        return isValidCoordinate;
+        return boardString.toString();
     }
 }
