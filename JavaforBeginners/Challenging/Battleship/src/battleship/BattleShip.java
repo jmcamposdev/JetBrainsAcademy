@@ -27,7 +27,7 @@ public class BattleShip {
 
     }
 
-    public boolean gameWon () {
+    public boolean isAllShipSank () {
         return numberOfSankShips == ALL_SHIPS.length;
     }
 
@@ -201,7 +201,7 @@ public class BattleShip {
                 }
             }
         }
-        return gameWon() ? "" : result;
+        return isAllShipSank() ? "" : result;
     }
 
     private boolean isShipSank(int x, int y) {
@@ -245,12 +245,12 @@ public class BattleShip {
         return isShipSank;
     }
 
-    public boolean isValidCoordinate (String coordinate) {
+    public static boolean isValidCoordinate (String coordinate) {
         boolean isValidCoordinate = false;
         if (coordinate.matches(PATTERN_COORDINATE)) {
             int x = coordinate.charAt(0) - 'A';
             int y = Integer.parseInt(coordinate.substring(1))-1;
-            if (x >= 0 && x < board.length && y >= 0 && y < board[0].length) {
+            if (x >= 0 && x < 10 && y >= 0 && y < 10) {
                 isValidCoordinate = true;
             }
         }
@@ -270,7 +270,9 @@ public class BattleShip {
                                 value == HIT_VALUE ? 'X' : 'M';
                 boardString.append(" ").append(icon);
             }
-            boardString.append("\n");
+            if (rowIndex != 'K') {
+                boardString.append("\n");
+            }
         }
         return boardString.toString();
     }
@@ -287,7 +289,9 @@ public class BattleShip {
                                 value == HIT_VALUE ? 'X' : 'M';
                 boardString.append(" ").append(icon);
             }
-            boardString.append("\n");
+            if (rowIndex != 'K') {
+                boardString.append("\n");
+            }
         }
         return boardString.toString();
     }
