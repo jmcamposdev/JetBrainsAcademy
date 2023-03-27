@@ -12,15 +12,19 @@ import java.util.Scanner;
  */
 public class ReadabilityScore {
 
+    public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
-        if (text.length() > 100) {
+
+        String[] sentences = text.split("[.!?]");
+        double words = text.split("\\s+").length;
+        if (words / sentences.length > 10.0) {
             System.out.println("HARD");
         } else {
             System.out.println("EASY");
         }
-
     }
+}
     
 }
